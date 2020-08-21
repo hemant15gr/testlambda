@@ -1,0 +1,37 @@
+Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}-start
+
+  FanOutTopic:
+    Type: AWS::SNS::Topic
+
+  BulkEventsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: bulk-events-stage/target/lambda.zip
+      Handler: book.pipeline.bulk.BulkEventsLambda::handler
+      Environment:
+        Variables:
+          FAN_OUT_TOPIC: !Ref FanOutTopic
+      Policies:
+      - S3ReadPolicy:
+          BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}-start
+      - SNSPublishMessagePolicy:
+          TopicName: !GetAtt FanOutTopic.TopicName
+      Events:
+        S3Event:
+          Type: S3
+          Properties:
+            Bucket: !Ref PipelineStartBucket
+            Events: s3:ObjectCreated:*
+
+  SingleEventLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: single-event-stage/target/lambda.zip
+      Handler: book.pipeline.single.SingleEventLambda::handler
+      Events:
+        SnsEvent:
+          Type: SNS
+          Properties:
+            Topic: !Ref FanOutTopic
