@@ -44,11 +44,22 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.12</version>
 		</dependency>
-                  <dependency>
-                          <groupId>com.neo.step</groupId>
-                          <artifactId>common</artifactId>
-                          <version>0.0.1-SNAPSHOT</version>
-                 </dependency>
-
+                   <dependencies>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-lambda-java-core</artifactId>
+      <version>1.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-lambda-java-events</artifactId>
+      <version>2.2.9</version>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-lambda-java-log4j2</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+  </dependencies>
 	</dependencies>
 </project>
