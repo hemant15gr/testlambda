@@ -12,13 +12,7 @@ phases:
       - export PATH=$PATH:$USER_BASE_PATH/bin
   build:
     commands:
-       - mvn clean install
-     # - mvn clean package
-     # - aws cloudformation package --s3-bucket codebuildtest-hemant --output-template-file packaged-template.yaml
-     # - aws cloudformation --template-file packaged-template.yaml --stack-name ${APP_STACK_NAME} --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset
-      #- sam package --s3-bucket codebuildtest-hemant --output-template-file packaged-template.yaml
-     #aws cloudformation - sam deploy --template-file packaged-template.yaml --stack-name ${APP_STACK_NAME} --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset
-        # - aws cloudformation package --template-file template.yaml --s3-bucket ${SAM_BUCKET} --output-template-file packaged-template.yaml
+     - mvn clean install
      - sam package --s3-bucket ${SAM_BUCKET} --output-template-file packaged-template.yaml
      - sam deploy --template-file template.yaml --stack-name ${APP_STACK_NAME} --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset
 
