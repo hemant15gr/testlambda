@@ -1,4 +1,16 @@
-Type: AWS::S3::Bucket
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: chapter5-data-pipeline
+
+Globals:
+  Function:
+    Runtime: java8
+    MemorySize: 512
+    Timeout: 10
+
+Resources:
+  PipelineStartBucket:
+   Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}-start
 
