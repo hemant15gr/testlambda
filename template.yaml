@@ -8,7 +8,7 @@ Type: AWS::S3::Bucket
   BulkEventsLambda:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: bulk-events-stage/target/lambda.zip
+      CodeUri: bulk-events-stage/target/DemoJava-0.0.1-SNAPSHOT-shaded.jar
       Handler: book.pipeline.bulk.BulkEventsLambda::handler
       Environment:
         Variables:
@@ -28,7 +28,7 @@ Type: AWS::S3::Bucket
   SingleEventLambda:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: single-event-stage/target/lambda.zip
+      CodeUri: single-event-stage/target/DemoJava-0.0.1-SNAPSHOT-shaded.jar
       Handler: book.pipeline.single.SingleEventLambda::handler
       Events:
         SnsEvent:
