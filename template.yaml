@@ -12,7 +12,7 @@ Resources:
   PipelineStartBucket:
    Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub hemanttestbucket-start
+      BucketName: !Sub hemantlambdatestbucket-start
   FanOutTopic:
     Type: AWS::SNS::Topic
 
@@ -26,7 +26,7 @@ Resources:
           FAN_OUT_TOPIC: !Ref FanOutTopic
       Policies:
       - S3ReadPolicy:
-          BucketName: !Sub hemanttestbucket-start
+          BucketName: !Sub hemantlambdatestbucket-start
       - SNSPublishMessagePolicy:
           TopicName: !GetAtt FanOutTopic.TopicName
       Events:
