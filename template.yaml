@@ -8,12 +8,6 @@ Globals:
     MemorySize: 512
     Timeout: 10
 
-Resources:
-  PipelineStartBucket:
-   Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-${AWS::Region}-start
-
   FanOutTopic:
     Type: AWS::SNS::Topic
 
