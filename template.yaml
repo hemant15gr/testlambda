@@ -7,7 +7,7 @@ Globals:
     Runtime: java8
     MemorySize: 512
     Timeout: 10
-
+Resources:
   FanOutTopic:
     Type: AWS::SNS::Topic
 
